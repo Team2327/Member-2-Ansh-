@@ -73,3 +73,16 @@ export interface AssessmentResult {
     answers: number[];
     completedAt: string;
 }
+/**
+ * Represents one message in an EMORA conversation.
+ *
+ * Messages are persisted so the conversation can be
+ * restored after a page refresh.
+ */
+export interface ChatMessage {
+    id: string;
+    userId: string;
+    role: "user" | "assistant";
+    content: string;
+    createdAt: string;
+}
