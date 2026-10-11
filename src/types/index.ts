@@ -86,3 +86,24 @@ export interface ChatMessage {
     content: string;
     createdAt: string;
 }
+/**
+ * Represents a personalized wellness recommendation.
+ *
+ * The recommendation engine can generate recommendations
+ * using assessment results and mood history.
+ */
+export interface Recommendation {
+    id: string;
+    userId: string;
+    category:
+    | "self-care"
+    | "breathing"
+    | "meditation"
+    | "yoga"
+    | "professional-support";
+    title: string;
+    description: string;
+    reason: string;
+    source: "assessment" | "mood" | "combined";
+    createdAt: string;
+}
