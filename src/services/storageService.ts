@@ -100,7 +100,16 @@ function remove(key: string): void {
 function has(key: string): boolean {
     const storageKey = createKey(key);
 
-    return localStorage.getItem(storageKey) !== null;
+    try {
+        return localStorage.getItem(storageKey) !== null;
+    } catch (error) {
+        console.error(
+            `Failed to check storage key: ${storageKey}`,
+            error
+        );
+
+        throw new Error("Unable to check stored data.");
+    }
 }
 
 /**
