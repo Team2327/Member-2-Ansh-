@@ -2,7 +2,7 @@
 
 import { storageService } from "./storageService";
 import type { MoodEntry } from "../types";
-
+import { recommendationService } from "./recommendationService";
 const MOODS_KEY = "moods";
 
 /**
@@ -38,10 +38,17 @@ function addMoodEntry(
 
     const existingEntries = getAllMoodEntries();
 
+
     storageService.set(MOODS_KEY, [
         ...existingEntries,
         moodEntry,
     ]);
+
+
+
+    recommendationService.refreshRecommendations(userId);
+
+    return moodEntry;
 
     return moodEntry;
 }

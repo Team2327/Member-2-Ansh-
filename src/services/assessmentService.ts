@@ -2,6 +2,7 @@
 
 import { storageService } from "./storageService";
 import type { AssessmentResult } from "../types";
+import { recommendationService } from "./recommendationService";
 
 const ASSESSMENTS_KEY = "assessments";
 
@@ -45,10 +46,15 @@ function saveAssessment(
         result,
     };
 
+
     storageService.set(ASSESSMENTS_KEY, [
         ...assessments,
         storedAssessment,
     ]);
+
+    recommendationService.refreshRecommendations(userId);
+
+    return result;
 
     return result;
 }
